@@ -28,6 +28,15 @@ function Navbar() {
           </NavLink>
 
           <NavLink
+            to="/shop"
+            className={({ isActive }) =>
+              isActive ? "nav-link active" : "nav-link"
+            }
+          >
+            Shop
+          </NavLink>
+
+          <NavLink
             to="/cart"
             className={({ isActive }) =>
               isActive ? "nav-link active" : "nav-link"

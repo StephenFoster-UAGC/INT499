@@ -1,36 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaTrash,
   FaEdit,
   FaCheck,
   FaStar
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function StreamList() {
-  const [movie, setMovie] = useState("");
-  const [movieList, setMovieList] = useState([]);
+  
+  const [movieList, setMovieList] = useState(() => {
+  const savedMovies = localStorage.getItem("streamListMovies");
+
+  return savedMovies
+    ? JSON.parse(savedMovies)
+    : [];
+});
 
   const [editingId, setEditingId] = useState(null);
   const [editedMovie, setEditedMovie] = useState("");
 
   const [search, setSearch] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (!movie.trim()) return;
-
-    const newMovie = {
-      id: Date.now(),
-      title: movie,
-      completed: false,
-      favorite: false
-    };
-
-    setMovieList([...movieList, newMovie]);
-
-    setMovie("");
-  };
+  
 
   const deleteMovie = (id) => {
     setMovieList(
@@ -88,6 +80,12 @@ function StreamList() {
     setMovieList([]);
   };
 
+  useEffect(() => {
+    localStorage.setItem(
+      "streamListMovies",
+      JSON.stringify(movieList)
+    );
+  }, [movieList]);
 
 
   return (
@@ -102,29 +100,19 @@ function StreamList() {
           <span> worth watching.</span>
         </h1>
 
-        <p>
-          Build your personal watchlist by entering a movie
-          or show below.
-        </p>
+        
+        <div className="browse-movies-section">
+          <p>
+            Search TMDB to discover movies and add them to your StreamList.
+          </p>
 
-        <form
-          onSubmit={handleSubmit}
-          className="search-form"
-        >
-          <input
-            type="text"
-            placeholder="Enter a movie or show..."
-            value={movie}
-            onChange={(event) =>
-              setMovie(event.target.value)
-            }
-            required
-          />
-
-          <button type="submit">
-            Add to StreamList
-          </button>
-        </form>
+          <Link
+            to="/movies"
+            className="browse-movies-button"
+          >
+            Browse Movies
+          </Link>
+        </div>
 
           <input
             className="search-filter"
@@ -178,6 +166,17 @@ function StreamList() {
               key={movie.id}
               className="movie-item"
             >
+              {movie.posterPath ? (
+                <img
+                  className="watchlist-poster"
+                  src={`https://image.tmdb.org/t/p/w200${movie.posterPath}`}
+                  alt={`${movie.title} poster`}
+                />
+              ) : (
+                <div className="watchlist-poster placeholder-poster">
+                  No Poster
+                </div>
+              )}
               {editingId === movie.id ? (
                 <>
                   <input
