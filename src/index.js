@@ -9,3 +9,22 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        console.log(
+          "StreamList service worker registered:",
+          registration
+        );
+      })
+      .catch((error) => {
+        console.error(
+          "StreamList service worker registration failed:",
+          error
+        );
+      });
+  });
+}
