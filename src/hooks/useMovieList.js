@@ -1,3 +1,13 @@
+/*  
+    StreamList App
+    Stephen Foster
+    The University of Arizona Global Campus
+    INT499: Capstone for Information Technology
+    Professor Amine Dehmani
+    August 31, 2026
+*/
+
+
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 export const STORAGE_KEY = "streamListMovies";

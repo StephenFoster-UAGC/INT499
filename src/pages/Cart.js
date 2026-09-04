@@ -1,7 +1,19 @@
+/*  
+    StreamList App
+    Jose Hernandez
+    The University of Arizona Global Campus
+    INT499: Capstone for Information Technology
+    Professor Amine Dehmani
+    August 24, 2026
+*/
+
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = ({ cart, setCart, handleChange }) => {
+  const navigate = useNavigate();
+
   const handleRemove = (id) => {
     const updatedCart = cart.filter((item) => item.id !== id);
     setCart(updatedCart);
@@ -81,7 +93,10 @@ const Cart = ({ cart, setCart, handleChange }) => {
               <span>Total Price:</span>
               <span>${totalPrice.toFixed(2)}</span>
             </div>
-            <button className="checkout-btn" onClick={() => alert('Proceeding to Week 4 Credit Card Checkout!')}>
+            <button
+              className="checkout-btn"
+              onClick={() => navigate('/checkout')}
+            >
               Proceed to Checkout
             </button>
             <Link to="/shop" className="back-link">

@@ -1,3 +1,13 @@
+/*  
+    StreamList App
+    Stephen Foster
+    The University of Arizona Global Campus
+    INT499: Capstone for Information Technology
+    Professor Amine Dehmani
+    August 31, 2026
+*/
+
+
 import { FaCheck, FaEdit, FaStar, FaTrash } from "react-icons/fa";
 import { buildPosterUrl } from "../../utils/tmdb";
 

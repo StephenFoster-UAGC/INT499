@@ -1,6 +1,16 @@
+/*  
+    StreamList App
+    Stephen Foster, JOse Hernandez
+    The University of Arizona Global Campus
+    INT499: Capstone for Information Technology
+    Professor Amine Dehmani
+    August 31, 2026
+*/
+
+
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ handleLogout }) {
   return (
     <nav className="navbar">
       <div className="nav-container">
@@ -53,6 +63,15 @@ function Navbar() {
           >
             About
           </NavLink>
+
+            <button
+              type="button"
+              className="nav-link logout-btn"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+
         </div>
       </div>
     </nav>

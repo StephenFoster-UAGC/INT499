@@ -1,3 +1,13 @@
+/*  
+    StreamList App
+    Jose Hernandez
+    The University of Arizona Global Campus
+    INT499: Capstone for Information Technology
+    Professor Amine Dehmani
+    August24, 2026
+*/
+
+
 const list = [
   {
     id: 1,
